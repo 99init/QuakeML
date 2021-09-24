@@ -1,0 +1,1252 @@
+{
+  "title": "/Users/dalxds/Downloads/1.2/QuakeML-BED-1.2.xsd",
+  "$schema": "http://json-schema.org/schema#",
+  "id": "http://quakeml.org/xmlns/bed/1.2",
+  "type": "object",
+  "properties": {
+    "eventParameters": {
+      "$ref": "#/definitions/EventParameters"
+    }
+  },
+  "required": [
+    "eventParameters"
+  ],
+  "additionalProperties": false,
+  "definitions": {
+    "ResourceIdentifier": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "(smi|quakeml):[\\w\\d][\\w\\d\\-\\.\\*\\(\\)_~']{2,}/[\\w\\d\\-\\.\\*\\(\\)_~'][\\w\\d\\-\\.\\*\\(\\)\\+\\?_~'=,;#/&]*"
+    },
+    "WhitespaceOrEmptyStringType": {
+      "type": "string",
+      "pattern": "\\s*"
+    },
+    "ResourceReference_optional": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        {
+          "$ref": "#/definitions/WhitespaceOrEmptyStringType"
+        }
+      ],
+      "additionalProperties": false
+    },
+    "OriginUncertaintyDescription": {
+      "type": "string",
+      "enum": [
+        "horizontal uncertainty",
+        "uncertainty ellipse",
+        "confidence ellipsoid"
+      ]
+    },
+    "AmplitudeCategory": {
+      "type": "string",
+      "enum": [
+        "point",
+        "mean",
+        "duration",
+        "period",
+        "integral",
+        "other"
+      ]
+    },
+    "OriginDepthType": {
+      "type": "string",
+      "enum": [
+        "from location",
+        "from moment tensor inversion",
+        "from modeling of broad-band P waveforms",
+        "constrained by depth phases",
+        "constrained by direct phases",
+        "constrained by depth and direct phases",
+        "operator assigned",
+        "other"
+      ]
+    },
+    "OriginType": {
+      "type": "string",
+      "enum": [
+        "hypocenter",
+        "centroid",
+        "amplitude",
+        "macroseismic",
+        "rupture start",
+        "rupture end"
+      ]
+    },
+    "MTInversionType": {
+      "type": "string",
+      "enum": [
+        "general",
+        "zero trace",
+        "double couple"
+      ]
+    },
+    "EvaluationMode": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "automatic"
+      ]
+    },
+    "EvaluationStatus": {
+      "type": "string",
+      "enum": [
+        "preliminary",
+        "confirmed",
+        "reviewed",
+        "final",
+        "rejected"
+      ]
+    },
+    "PickOnset": {
+      "type": "string",
+      "enum": [
+        "emergent",
+        "impulsive",
+        "questionable"
+      ]
+    },
+    "EventType": {
+      "type": "string",
+      "enum": [
+        "not existing",
+        "not reported",
+        "earthquake",
+        "anthropogenic event",
+        "collapse",
+        "cavity collapse",
+        "mine collapse",
+        "building collapse",
+        "explosion",
+        "accidental explosion",
+        "chemical explosion",
+        "controlled explosion",
+        "experimental explosion",
+        "industrial explosion",
+        "mining explosion",
+        "quarry blast",
+        "road cut",
+        "blasting levee",
+        "nuclear explosion",
+        "induced or triggered event",
+        "rock burst",
+        "reservoir loading",
+        "fluid injection",
+        "fluid extraction",
+        "crash",
+        "plane crash",
+        "train crash",
+        "boat crash",
+        "other event",
+        "atmospheric event",
+        "sonic boom",
+        "sonic blast",
+        "acoustic noise",
+        "thunder",
+        "avalanche",
+        "snow avalanche",
+        "debris avalanche",
+        "hydroacoustic event",
+        "ice quake",
+        "slide",
+        "landslide",
+        "rockslide",
+        "meteorite",
+        "volcanic eruption"
+      ]
+    },
+    "DataUsedWaveType": {
+      "type": "string",
+      "enum": [
+        "P waves",
+        "body waves",
+        "surface waves",
+        "mantle waves",
+        "combined",
+        "unknown"
+      ]
+    },
+    "AmplitudeUnit": {
+      "type": "string",
+      "enum": [
+        "m",
+        "s",
+        "m/s",
+        "m/(s*s)",
+        "m*s",
+        "dimensionless",
+        "other"
+      ]
+    },
+    "EventDescriptionType": {
+      "type": "string",
+      "enum": [
+        "felt report",
+        "Flinn-Engdahl region",
+        "local time",
+        "tectonic summary",
+        "nearest cities",
+        "earthquake name",
+        "region name"
+      ]
+    },
+    "MomentTensorCategory": {
+      "type": "string",
+      "enum": [
+        "teleseismic",
+        "regional"
+      ]
+    },
+    "EventTypeCertainty": {
+      "type": "string",
+      "enum": [
+        "known",
+        "suspected"
+      ]
+    },
+    "SourceTimeFunctionType": {
+      "type": "string",
+      "enum": [
+        "box car",
+        "triangle",
+        "trapezoid",
+        "unknown"
+      ]
+    },
+    "PickPolarity": {
+      "type": "string",
+      "enum": [
+        "positive",
+        "negative",
+        "undecidable"
+      ]
+    },
+    "ResourceReference": {
+      "$ref": "#/definitions/ResourceIdentifier"
+    },
+    "TimeQuantity": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "uncertainty": {
+          "type": "number",
+          "format": "double"
+        },
+        "lowerUncertainty": {
+          "type": "number",
+          "format": "double"
+        },
+        "upperUncertainty": {
+          "type": "number",
+          "format": "double"
+        },
+        "confidenceLevel": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "additionalProperties": true
+    },
+    "CreationInfo": {
+      "type": "object",
+      "properties": {
+        "agencyID": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "agencyURI": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "author": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "authorURI": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "creationTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "version": {
+          "type": "string",
+          "maxLength": 64
+        }
+      },
+      "additionalProperties": true
+    },
+    "EventDescription": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/EventDescriptionType"
+        }
+      },
+      "additionalProperties": true
+    },
+    "Phase": {
+      "type": "object",
+      "properties": {
+        "#text": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "Comment": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "creationInfo": {
+          "$ref": "#/definitions/CreationInfo"
+        },
+        "id": {
+          "$ref": "#/definitions/ResourceReference"
+        }
+      },
+      "additionalProperties": true
+    },
+    "Axis": {
+      "type": "object",
+      "properties": {
+        "azimuth": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "plunge": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "length": {
+          "$ref": "#/definitions/RealQuantity"
+        }
+      },
+      "additionalProperties": true
+    },
+    "PrincipalAxes": {
+      "type": "object",
+      "properties": {
+        "tAxis": {
+          "$ref": "#/definitions/Axis"
+        },
+        "pAxis": {
+          "$ref": "#/definitions/Axis"
+        },
+        "nAxis": {
+          "$ref": "#/definitions/Axis"
+        }
+      },
+      "additionalProperties": true
+    },
+    "DataUsed": {
+      "type": "object",
+      "properties": {
+        "waveType": {
+          "$ref": "#/definitions/DataUsedWaveType"
+        },
+        "stationCount": {
+          "type": "integer"
+        },
+        "componentCount": {
+          "type": "integer"
+        },
+        "shortestPeriod": {
+          "type": "number",
+          "format": "double"
+        },
+        "longestPeriod": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "additionalProperties": true
+    },
+    "CompositeTime": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "$ref": "#/definitions/IntegerQuantity"
+        },
+        "month": {
+          "$ref": "#/definitions/IntegerQuantity"
+        },
+        "day": {
+          "$ref": "#/definitions/IntegerQuantity"
+        },
+        "hour": {
+          "$ref": "#/definitions/IntegerQuantity"
+        },
+        "minute": {
+          "$ref": "#/definitions/IntegerQuantity"
+        },
+        "second": {
+          "$ref": "#/definitions/RealQuantity"
+        }
+      },
+      "additionalProperties": true
+    },
+    "Tensor": {
+      "type": "object",
+      "properties": {
+        "Mrr": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "Mtt": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "Mpp": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "Mrt": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "Mrp": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "Mtp": {
+          "$ref": "#/definitions/RealQuantity"
+        }
+      },
+      "additionalProperties": true
+    },
+    "OriginQuality": {
+      "type": "object",
+      "properties": {
+        "associatedPhaseCount": {
+          "type": "integer"
+        },
+        "usedPhaseCount": {
+          "type": "integer"
+        },
+        "associatedStationCount": {
+          "type": "integer"
+        },
+        "usedStationCount": {
+          "type": "integer"
+        },
+        "depthPhaseCount": {
+          "type": "integer"
+        },
+        "standardError": {
+          "type": "number",
+          "format": "double"
+        },
+        "azimuthalGap": {
+          "type": "number",
+          "format": "double"
+        },
+        "secondaryAzimuthalGap": {
+          "type": "number",
+          "format": "double"
+        },
+        "groundTruthLevel": {
+          "type": "string",
+          "maxLength": 32
+        },
+        "maximumDistance": {
+          "type": "number",
+          "format": "double"
+        },
+        "minimumDistance": {
+          "type": "number",
+          "format": "double"
+        },
+        "medianDistance": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "additionalProperties": true
+    },
+    "RealQuantity": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "format": "double"
+        },
+        "uncertainty": {
+          "type": "number",
+          "format": "double"
+        },
+        "lowerUncertainty": {
+          "type": "number",
+          "format": "double"
+        },
+        "upperUncertainty": {
+          "type": "number",
+          "format": "double"
+        },
+        "confidenceLevel": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "additionalProperties": true
+    },
+    "NodalPlane": {
+      "type": "object",
+      "properties": {
+        "strike": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "dip": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "rake": {
+          "$ref": "#/definitions/RealQuantity"
+        }
+      },
+      "additionalProperties": true
+    },
+    "TimeWindow": {
+      "type": "object",
+      "properties": {
+        "begin": {
+          "type": "number",
+          "format": "double"
+        },
+        "end": {
+          "type": "number",
+          "format": "double"
+        },
+        "reference": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": true
+    },
+    "WaveformStreamID": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResourceReference_optional"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "networkCode": {
+              "type": "string",
+              "maxLength": 8
+            },
+            "stationCode": {
+              "type": "string",
+              "maxLength": 8
+            },
+            "channelCode": {
+              "type": "string",
+              "maxLength": 8
+            },
+            "locationCode": {
+              "type": "string",
+              "maxLength": 8
+            }
+          },
+          "required": [
+            "networkCode",
+            "stationCode"
+          ],
+          "additionalProperties": true
+        }
+      ]
+    },
+    "IntegerQuantity": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "integer"
+        },
+        "uncertainty": {
+          "type": "integer"
+        },
+        "lowerUncertainty": {
+          "type": "integer"
+        },
+        "upperUncertainty": {
+          "type": "integer"
+        },
+        "confidenceLevel": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "additionalProperties": true
+    },
+    "SourceTimeFunction": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/SourceTimeFunctionType"
+        },
+        "duration": {
+          "type": "number",
+          "format": "double"
+        },
+        "riseTime": {
+          "type": "number",
+          "format": "double"
+        },
+        "decayTime": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "additionalProperties": true
+    },
+    "NodalPlanes": {
+      "type": "object",
+      "properties": {
+        "nodalPlane1": {
+          "$ref": "#/definitions/NodalPlane"
+        },
+        "nodalPlane2": {
+          "$ref": "#/definitions/NodalPlane"
+        },
+        "preferredPlane": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": true
+    },
+    "ConfidenceEllipsoid": {
+      "type": "object",
+      "properties": {
+        "semiMajorAxisLength": {
+          "type": "number",
+          "format": "double"
+        },
+        "semiMinorAxisLength": {
+          "type": "number",
+          "format": "double"
+        },
+        "semiIntermediateAxisLength": {
+          "type": "number",
+          "format": "double"
+        },
+        "majorAxisPlunge": {
+          "type": "number",
+          "format": "double"
+        },
+        "majorAxisAzimuth": {
+          "type": "number",
+          "format": "double"
+        },
+        "majorAxisRotation": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "additionalProperties": true
+    },
+    "MomentTensor": {
+      "type": "object",
+      "properties": {
+        "dataUsed": {
+          "$ref": "#/definitions/DataUsed"
+        },
+        "comment": {
+          "$ref": "#/definitions/Comment"
+        },
+        "derivedOriginID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "momentMagnitudeID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "scalarMoment": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "tensor": {
+          "$ref": "#/definitions/Tensor"
+        },
+        "variance": {
+          "type": "number",
+          "format": "double"
+        },
+        "varianceReduction": {
+          "type": "number",
+          "format": "double"
+        },
+        "doubleCouple": {
+          "type": "number",
+          "format": "double"
+        },
+        "clvd": {
+          "type": "number",
+          "format": "double"
+        },
+        "iso": {
+          "type": "number",
+          "format": "double"
+        },
+        "greensFunctionID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "filterID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "sourceTimeFunction": {
+          "$ref": "#/definitions/SourceTimeFunction"
+        },
+        "methodID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "category": {
+          "$ref": "#/definitions/MomentTensorCategory"
+        },
+        "inversionType": {
+          "$ref": "#/definitions/MTInversionType"
+        },
+        "creationInfo": {
+          "$ref": "#/definitions/CreationInfo"
+        },
+        "publicID": {
+          "$ref": "#/definitions/ResourceReference"
+        }
+      },
+      "required": [
+        "publicID"
+      ],
+      "additionalProperties": true
+    },
+    "FocalMechanism": {
+      "type": "object",
+      "properties": {
+        "waveformID": {
+          "$ref": "#/definitions/WaveformStreamID"
+        },
+        "comment": {
+          "$ref": "#/definitions/Comment"
+        },
+        "momentTensor": {
+          "$ref": "#/definitions/MomentTensor"
+        },
+        "triggeringOriginID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "nodalPlanes": {
+          "$ref": "#/definitions/NodalPlanes"
+        },
+        "principalAxes": {
+          "$ref": "#/definitions/PrincipalAxes"
+        },
+        "azimuthalGap": {
+          "type": "number",
+          "format": "double"
+        },
+        "stationPolarityCount": {
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "misfit": {
+          "type": "number",
+          "format": "double"
+        },
+        "stationDistributionRatio": {
+          "type": "number",
+          "format": "double"
+        },
+        "methodID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "evaluationMode": {
+          "$ref": "#/definitions/EvaluationMode"
+        },
+        "evaluationStatus": {
+          "$ref": "#/definitions/EvaluationStatus"
+        },
+        "creationInfo": {
+          "$ref": "#/definitions/CreationInfo"
+        },
+        "publicID": {
+          "$ref": "#/definitions/ResourceReference"
+        }
+      },
+      "required": [
+        "publicID"
+      ],
+      "additionalProperties": true
+    },
+    "Amplitude": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "$ref": "#/definitions/Comment"
+        },
+        "genericAmplitude": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "type": {
+          "type": "string",
+          "maxLength": 32
+        },
+        "category": {
+          "$ref": "#/definitions/AmplitudeCategory"
+        },
+        "unit": {
+          "$ref": "#/definitions/AmplitudeUnit"
+        },
+        "methodID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "period": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "snr": {
+          "type": "number",
+          "format": "double"
+        },
+        "timeWindow": {
+          "$ref": "#/definitions/TimeWindow"
+        },
+        "pickID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "waveformID": {
+          "$ref": "#/definitions/WaveformStreamID"
+        },
+        "filterID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "scalingTime": {
+          "$ref": "#/definitions/TimeQuantity"
+        },
+        "magnitudeHint": {
+          "type": "string",
+          "maxLength": 32
+        },
+        "evaluationMode": {
+          "$ref": "#/definitions/EvaluationMode"
+        },
+        "evaluationStatus": {
+          "$ref": "#/definitions/EvaluationStatus"
+        },
+        "creationInfo": {
+          "$ref": "#/definitions/CreationInfo"
+        },
+        "publicID": {
+          "$ref": "#/definitions/ResourceReference"
+        }
+      },
+      "required": [
+        "publicID"
+      ],
+      "additionalProperties": true
+    },
+    "StationMagnitudeContribution": {
+      "type": "object",
+      "properties": {
+        "stationMagnitudeID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "residual": {
+          "type": "number",
+          "format": "double"
+        },
+        "weight": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "additionalProperties": true
+    },
+    "Magnitude": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "$ref": "#/definitions/Comment"
+        },
+        "stationMagnitudeContribution": {
+          "$ref": "#/definitions/StationMagnitudeContribution"
+        },
+        "mag": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "type": {
+          "type": "string",
+          "maxLength": 32
+        },
+        "originID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "methodID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "stationCount": {
+          "type": "integer"
+        },
+        "azimuthalGap": {
+          "type": "number",
+          "format": "double"
+        },
+        "evaluationMode": {
+          "$ref": "#/definitions/EvaluationMode"
+        },
+        "evaluationStatus": {
+          "$ref": "#/definitions/EvaluationStatus"
+        },
+        "creationInfo": {
+          "$ref": "#/definitions/CreationInfo"
+        },
+        "publicID": {
+          "$ref": "#/definitions/ResourceReference"
+        }
+      },
+      "required": [
+        "publicID"
+      ],
+      "additionalProperties": true
+    },
+    "StationMagnitude": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "$ref": "#/definitions/Comment"
+        },
+        "originID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "mag": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "type": {
+          "type": "string",
+          "maxLength": 32
+        },
+        "amplitudeID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "methodID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "waveformID": {
+          "$ref": "#/definitions/WaveformStreamID"
+        },
+        "creationInfo": {
+          "$ref": "#/definitions/CreationInfo"
+        },
+        "publicID": {
+          "$ref": "#/definitions/ResourceReference"
+        }
+      },
+      "required": [
+        "publicID"
+      ],
+      "additionalProperties": true
+    },
+    "OriginUncertainty": {
+      "type": "object",
+      "properties": {
+        "horizontalUncertainty": {
+          "type": "number",
+          "format": "double"
+        },
+        "minHorizontalUncertainty": {
+          "type": "number",
+          "format": "double"
+        },
+        "maxHorizontalUncertainty": {
+          "type": "number",
+          "format": "double"
+        },
+        "azimuthMaxHorizontalUncertainty": {
+          "type": "number",
+          "format": "double"
+        },
+        "confidenceEllipsoid": {
+          "$ref": "#/definitions/ConfidenceEllipsoid"
+        },
+        "preferredDescription": {
+          "$ref": "#/definitions/OriginUncertaintyDescription"
+        },
+        "confidenceLevel": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "additionalProperties": true
+    },
+    "Arrival": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "$ref": "#/definitions/Comment"
+        },
+        "pickID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "phase": {
+          "$ref": "#/definitions/Phase"
+        },
+        "timeCorrection": {
+          "type": "number",
+          "format": "double"
+        },
+        "azimuth": {
+          "type": "number",
+          "format": "double"
+        },
+        "distance": {
+          "type": "number",
+          "format": "double"
+        },
+        "takeoffAngle": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "timeResidual": {
+          "type": "number",
+          "format": "double"
+        },
+        "horizontalSlownessResidual": {
+          "type": "number",
+          "format": "double"
+        },
+        "backazimuthResidual": {
+          "type": "number",
+          "format": "double"
+        },
+        "timeWeight": {
+          "type": "number",
+          "format": "double"
+        },
+        "horizontalSlownessWeight": {
+          "type": "number",
+          "format": "double"
+        },
+        "backazimuthWeight": {
+          "type": "number",
+          "format": "double"
+        },
+        "earthModelID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "creationInfo": {
+          "$ref": "#/definitions/CreationInfo"
+        },
+        "publicID": {
+          "$ref": "#/definitions/ResourceReference"
+        }
+      },
+      "required": [
+        "publicID"
+      ],
+      "additionalProperties": true
+    },
+    "Origin": {
+      "type": "object",
+      "properties": {
+        "compositeTime": {
+          "$ref": "#/definitions/CompositeTime"
+        },
+        "comment": {
+          "$ref": "#/definitions/Comment"
+        },
+        "originUncertainty": {
+          "$ref": "#/definitions/OriginUncertainty"
+        },
+        "arrival": {
+          "$ref": "#/definitions/Arrival"
+        },
+        "time": {
+          "$ref": "#/definitions/TimeQuantity"
+        },
+        "longitude": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "latitude": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "depth": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "depthType": {
+          "$ref": "#/definitions/OriginDepthType"
+        },
+        "timeFixed": {
+          "type": "boolean"
+        },
+        "epicenterFixed": {
+          "type": "boolean"
+        },
+        "referenceSystemID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "methodID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "earthModelID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "quality": {
+          "$ref": "#/definitions/OriginQuality"
+        },
+        "type": {
+          "$ref": "#/definitions/OriginType"
+        },
+        "region": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "evaluationMode": {
+          "$ref": "#/definitions/EvaluationMode"
+        },
+        "evaluationStatus": {
+          "$ref": "#/definitions/EvaluationStatus"
+        },
+        "creationInfo": {
+          "$ref": "#/definitions/CreationInfo"
+        },
+        "publicID": {
+          "$ref": "#/definitions/ResourceReference"
+        }
+      },
+      "required": [
+        "publicID"
+      ],
+      "additionalProperties": true
+    },
+    "Pick": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "$ref": "#/definitions/Comment"
+        },
+        "time": {
+          "$ref": "#/definitions/TimeQuantity"
+        },
+        "waveformID": {
+          "$ref": "#/definitions/WaveformStreamID"
+        },
+        "filterID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "methodID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "horizontalSlowness": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "backazimuth": {
+          "$ref": "#/definitions/RealQuantity"
+        },
+        "slownessMethodID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "onset": {
+          "$ref": "#/definitions/PickOnset"
+        },
+        "phaseHint": {
+          "$ref": "#/definitions/Phase"
+        },
+        "polarity": {
+          "$ref": "#/definitions/PickPolarity"
+        },
+        "evaluationMode": {
+          "$ref": "#/definitions/EvaluationMode"
+        },
+        "evaluationStatus": {
+          "$ref": "#/definitions/EvaluationStatus"
+        },
+        "creationInfo": {
+          "$ref": "#/definitions/CreationInfo"
+        },
+        "publicID": {
+          "$ref": "#/definitions/ResourceReference"
+        }
+      },
+      "required": [
+        "publicID"
+      ],
+      "additionalProperties": true
+    },
+    "Event": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "$ref": "#/definitions/EventDescription"
+        },
+        "comment": {
+          "$ref": "#/definitions/Comment"
+        },
+        "focalMechanism": {
+          "$ref": "#/definitions/FocalMechanism"
+        },
+        "amplitude": {
+          "$ref": "#/definitions/Amplitude"
+        },
+        "magnitude": {
+          "$ref": "#/definitions/Magnitude"
+        },
+        "stationMagnitude": {
+          "$ref": "#/definitions/StationMagnitude"
+        },
+        "origin": {
+          "$ref": "#/definitions/Origin"
+        },
+        "pick": {
+          "$ref": "#/definitions/Pick"
+        },
+        "preferredOriginID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "preferredMagnitudeID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "preferredFocalMechanismID": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "type": {
+          "$ref": "#/definitions/EventType"
+        },
+        "typeCertainty": {
+          "$ref": "#/definitions/EventTypeCertainty"
+        },
+        "creationInfo": {
+          "$ref": "#/definitions/CreationInfo"
+        },
+        "publicID": {
+          "$ref": "#/definitions/ResourceReference"
+        }
+      },
+      "required": [
+        "publicID"
+      ],
+      "additionalProperties": true
+    },
+    "EventParameters": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "$ref": "#/definitions/Comment"
+        },
+        "event": {
+          "$ref": "#/definitions/Event"
+        },
+        "description": {
+          "type": "string"
+        },
+        "creationInfo": {
+          "$ref": "#/definitions/CreationInfo"
+        },
+        "publicID": {
+          "$ref": "#/definitions/ResourceReference"
+        }
+      },
+      "required": [
+        "publicID"
+      ],
+      "additionalProperties": true
+    }
+  }
+}
