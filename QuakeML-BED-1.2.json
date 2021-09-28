@@ -2,16 +2,6 @@
   "title": "QuakeML-BED-1.2",
   "$schema": "http://json-schema.org/schema#",
   "id": "https://raw.githubusercontent.com/99init/QuakeML/main/QuakeML-BED-1.2.json",
-  "type": "object",
-  "properties": {
-    "eventParameters": {
-      "$ref": "#/definitions/EventParameters"
-    }
-  },
-  "required": [
-    "eventParameters"
-  ],
-  "additionalProperties": false,
   "definitions": {
     "ResourceIdentifier": {
       "type": "string",
@@ -1246,6 +1236,15 @@
       "required": [
         "publicID"
       ],
+      "additionalProperties": true
+    },
+    "Quakeml": {
+      "type": "object",
+      "properties": {
+        "bed:eventParameters": {
+          "$ref": "bed.json#/definitions/eventParameters"
+        }
+      },
       "additionalProperties": true
     }
   }
