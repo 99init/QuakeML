@@ -1,7 +1,7 @@
 {
-  "title": "/Users/dalxds/Downloads/1.2/QuakeML-BED-1.2.xsd",
+  "title": "QuakeML-BED-1.2",
   "$schema": "http://json-schema.org/schema#",
-  "id": "http://quakeml.org/xmlns/bed/1.2",
+  "id": "https://raw.githubusercontent.com/99init/QuakeML/main/QuakeML-BED-1.2.json",
   "type": "object",
   "properties": {
     "eventParameters": {
